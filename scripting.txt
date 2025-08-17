@@ -1,0 +1,73 @@
+
+
+#!/bin/bash
+echo "Today is " `date`
+
+echo -e "\nenter the path to directory"
+read the_path
+
+echo -e "\n you path has the following files and folders: "
+ls $the_path
+
+Line #1: The shebang (#!/bin/bash) points toward the bash shell path.
+Line #2: The echo command is displaying the current date and time on the terminal. Note that the date is in backticks.
+Line #4: We want the user to enter a valid path.
+Line #5: The read command reads the input and stores it in the variable the_path.
+line #8: The ls command takes the variable with the stored path and displays the current files and folders.
+
+this is for the run_all.sh bash script explaining each line
+
+
+chmod modifies the permission and ownership of a file for the current user (u) +x adds the execution rights to the current user this means that the user who is the owner can now run the script 
+
+run_all.sh is the file I wanna run
+
+
+the path varibale is already predefinied this script basically prints out the contents of the current directoy you're currently in when you run it, and also it shows the current date
+
+
+for bash you need to define varirables for read for example if you say "read path_name" path_name is then automatically declared as a varaible.
+
+
+Basic Bash commands (echo, read, etc.)
+Here is a list of some of the most commonly used bash commands:
+
+cd: Change the directory to a different location.
+ls: List the contents of the current directory.
+mkdir: Create a new directory.
+touch: Create a new file.
+rm: Remove a file or directory.
+cp: Copy a file or directory.
+mv: Move or rename a file or directory.
+echo: Print text to the terminal.
+cat: Concatenate and print the contents of a file.
+grep: Search for a pattern in a file.
+chmod: Change the permissions of a file or directory.
+sudo: Run a command with administrative privileges.
+df: Display the amount of disk space available.
+history: Show a list of previously executed commands.
+ps: Display information about running processes.
+
+
+cron states are like basically when a program automatically executes.
+
+00 - midnight everyday
+/5 runs a script every 5 minutes
+
+0 6 1-5 runs a script at 6am from monday to friday
+
+0 0 1-7 runs a script for the first 7 days of the month
+
+0 12 1  runs the script on the first day of every month
+
+
+/5 = 5 minutes
+
+00 = midnight
+
+0 6 1-5
+
+set -x this basically is for debugging and it shows you what each line of bash like runs it can be really easy to find bugs this way.
+set -e this basically exits the code when the program is wrong.
+
+the difference between chmod 755 and chmod u+x is basically chmod 755 modifies other permission and chmod u+x just modifies the owner perms and executable

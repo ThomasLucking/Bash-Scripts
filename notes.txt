@@ -1,0 +1,118 @@
+BASIC LINUX COMMANDS AND BASH COMMANDS:
+
+ls -l lists the permissions ownership and basically gives more details about the files listed in a directory
+ls -a lists all the files in a directory including ones that are hidden, those start with a .
+
+env command shows all the the Environment Variables which includes already the path so it doesn't need to be specified by a specific path like cd or ls
+
+echo prints out a certain thing like print in python for example (echo $PATH) which prints out the path of the env file
+
+To set a Environment variable you need to start with the name and then immediatly after an = sign and then the value in one word for example "VarNAME=VarValue"
+
+exporting a variable makes it so when you create a python program or any program, the program can access it easily without redfining the value or making new variables constantly
+
+NAVIGATION and file management COMMANDS:
+
+cd = change directory
+touch = to create a certain file
+mkdir = create a new directory
+
+mkdir -p means you can create nested directories for example mkdir -p projects/code/test
+
+mv = move file so for example mv file1 test1 which translates to basically moving file1 into the diectory test1 
+and you can move back a directory or file with mv test/file 1 . with a special dot in the end
+
+Also you can rename directories or files using mv for example mv test testing
+
+cp means copy a file to a different file directory. for example cp file3 to a new file called file4
+
+in order to copy directories you need to do cp -r (directoryname)
+
+for example to copy a file to a specific directory you need to do cp file1(file) again(directory = again)
+
+rm = delete a file
+rmdir = deletes an empty directory
+
+rm -r again is to delete a directory that's not empty hence why is there an -r 
+this is an example of the mode of a specific file the first like 8 characters of the mode meanings are these.
+
+File Types (first character)
+- → regular file
+d → directory
+l → symbolic link
+c → character device (e.g., terminal)
+b → block device (e.g., disk)
+p → named pipe (FIFO)
+s → socket
+Permission bits
+
+Each set (rwx) corresponds to:
+r = read
+w = write
+x = execute (or enter, if a directory)
+Permissions exist for three classes:
+
+Owner (user)
+Group
+Others (everyone else)
+
+So in -rwxr-xr--:
+Owner: read, write, execute (rwx)
+Group: read, execute (r-x)
+Others: read only (r--)
+
+
+Stream Redirection
+Linux includes redirection commands for each stream. These can be used to write standard output or standard error to a file. If you write to a file that does not exist, a new file with that name will be created prior to writing.
+
+Commands with a single bracket overwrite the destination’s existing contents.
+
+Overwrite
+
+> - standard output
+
+< - standard input
+
+2> - standard error
+
+Commands with a double bracket do not overwrite the destination’s existing contents.
+
+Append
+
+>> - standard output
+
+<< - standard input
+
+2>> - standard error
+
+
+Filters
+Filters are are a class of programs that are commonly used with output piped from another program. Many of them are also useful on their own, but they illustrate piping behavior especially well.
+
+find - returns files with filenames that match the argument passed to find.
+
+grep - returns text that matches the string pattern passed to grep.
+
+tee - redirects standard input to both standard output and one or more files.
+
+tr - finds-and-replaces one string with another.
+
+wc - counts characters, lines, and words.
+
+
+ls ~ > (name of file ) this basically redirects what the ls outputs into a txt file so for example like if ls displays a number od directories it then puts it into the txt file. 
+
+2> is takes a specific error to a file the 2 stands for standard error(2) and then to redirects to a file, used for usually like debugging
+
+echo Written to a new file > data.txt
+echo Appended content to an existing file >> data.txt
+
+this basically writes what the text we wanted to print out to a test file.
+
+the >> command basically redirects information without overwriting the file for example redirecting the output of of an echo command to a txt file but without replacing the contents of the txt file
+
+wc = wordcount in linux for example looking the the wordcount for the a certain txt file and or file then updating it.
+The | symbol in Linux sends the output of one command directly into the input of another, creating a pipeline so they work together without using temporary files. It allows you to chain commands for step-by-step data processing.
+
+The command | tee file pattern (which includes the tee command) redirects the standard output of the command to a file and overwrites its contents. Then, it displays the redirected output in the terminal. It creates a new file if the file does not already exist.
+

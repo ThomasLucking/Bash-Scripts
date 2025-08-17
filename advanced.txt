@@ -1,0 +1,62 @@
+One weakness in many shell scripts is lines such as:
+
+cat /tmp/myfile | grep "mystring"
+which would run much faster as:
+
+grep "mystring" /tmp/myfile
+Not much, you may consider; the OS has to load up the /bin/grep executable, which is a reasonably small 75600 bytes on my system, open a pipe in memory for the transfer, load and run the /bin/cat executable, which is an even smaller 9528 bytes on my system, attach it to the input of the pipe, and let it run.
+
+A CGI environment is the set of variables, input, and execution settings a web server provides to a CGI program so it can process an HTTP request and send back a response.
+
+
+It's still not been set! What's going on?!
+When you call myvar2.sh from your interactive shell, a new shell is spawned to run the script. This is partly because of the #!/bin/sh line at the start of the script, which we discussed earlier.
+We need to export the variable for it to be inherited by another program - including a shell script. Type:
+
+$ export MYVAR
+$ ./myvar2.sh
+MYVAR is: hello
+MYVAR is: hi there
+Now look at line 3 of the script: this is changing the value of MYVAR. But there is no way that this will be passed back to your interactive shell. Try reading the value of MYVAR:
+
+$ echo $MYVAR
+hello
+$
+Once the shell script exits, its environment is destroyed. But MYVAR keeps its value of hello within your interactive shell.
+In order to receive environment changes back from the script, we must source the script - this effectively runs the script within our own interactive shell, instead of spawning another shell to run it.
+We can source a script via the "." (dot) command:
+
+
+$ MYVAR=hello
+$ echo $MYVAR
+hello
+$ . ./myvar2.sh
+MYVAR is: hello
+MYVAR is: hi there
+$ echo $MYVAR
+hi there
+
+An easy mistake to make is to say echo MYVAR instead of echo $MYVAR - unlike most languages, the dollar ($) symbol is required when getting the value of a variable, but must not be used when setting the value of the variable. An easy mistake to make when starting out in shell scripting.
+One other thing worth mentioning at this point about variables, is to consider the following shell script:
+
+#!/bin/sh
+echo "What is your name?"
+read USER_NAME
+echo "Hello $USER_NAME"
+echo "I will create you a file called $USER_NAME_file"
+touch $USER_NAME_file
+Think about what result you would expect. For example, if you enter "steve" as your USER_NAME, should the script create steve_file?
+Actually, no. This will cause an error unless there is a variable called USER_NAME_file. The shell does not know where the variable ends and the rest starts. How can we define this?
+The answer is, that we enclose the variable itself in curly brackets:
+
+user.sh
+#!/bin/sh
+echo "What is your name?"
+read USER_NAME
+echo "Hello $USER_NAME"
+echo "I will create you a file called ${USER_NAME}_file"
+touch "${USER_NAME}_file"
+
+
+In Bash, * is a wildcard that expands to matching filenames unless you escape or quote it, so echo * lists files instead of printing *. A forward slash / has no special meaning in globbing, so \/ is treated the same as / and printed literally. The difference is that * triggers Bash’s filename expansion, while / does not.
+
