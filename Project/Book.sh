@@ -15,7 +15,7 @@ add_function() {
 }
 
 remove_edit_function() {
-    while IFS= read -r line; do
+    while IFS= read -r line; do # this code loops through each line of data.txt then displays it
         echo "$line"
     done < data.txt
 }
