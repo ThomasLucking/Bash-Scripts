@@ -15,7 +15,9 @@ add_function() {
 }
 
 remove_edit_function() {
-    echo "Feature not implemented yet."
+    while IFS= read -r line; do
+        echo "$line"
+    done < data.txt
 }
 
 while true; do
