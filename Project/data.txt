@@ -1,7 +1,3 @@
-
-Name: [ Thomas Edward Lucking ]
-Phone number: [ +41 079 361 6587 ]
-Email: [ telucking@gmail.com ]
-Name: [ Bastien Nicoud ]
-Phone number: [ 0291378912 ]
-Email: [ dqwoihoqw@gmail.com ]
+Name: [ igor ]
+Phone number: [ 1280378192 ]
+Email: [ igor@gmail.com ]
