@@ -13,7 +13,6 @@ add_function() {
     read telephone_add
     echo "please add your email."
     read email_add
-    
     {
         echo "Name: [ $username_add ]"
         echo "Phone number: [ $telephone_add ]"
@@ -98,6 +97,10 @@ remove_edit_function() {
     mv "$tmpfile" data.txt # moves everything from the temporary file to data.txt 
     echo "Modification successful." # success
 }
+exit_function(){
+    echo "Thank you for using my adresse book"
+    exit;
+}
 
 while true; do
     echo "1) Search"
@@ -110,7 +113,7 @@ while true; do
         1) search_function ;;
         2) add_function ;;
         3) remove_edit_function ;;
-        4) break ;;
+        4) exit_function ;;
         *) echo "Invalid option" ;;
     esac
 done
