@@ -15,9 +15,25 @@ add_function() {
 }
 
 remove_edit_function() {
-    while IFS= read -r line; do # this code loops through each line of data.txt then displays it
-        echo "$line"
+    echo "This is the list of everything inside data.txt"
+    cat data.txt
+    tmpfile=$(mktemp) 
+    while IFS="" read -r p || [ -n "$p" ]
+    do
+        echo "Current line: $p"
+        # printf '%s\n' "$p"
+        read  -u 0 -p "Do you want to modify this line? (Y/N) " answer < /dev/tty # so basically what the -u and 0 it basically tells the bash script to read from my keyboard and not from a redirected file
+        if [[ "$answer" == "Y" || "$answer" == "y" ]]; then # this checks if the user said yes and if so it runs the condition
+            read -p "Enter new value: " new_value < /dev/tty # it asks the user to enter a new value then stores it into a new value
+            echo "$new_value" >> "$tmpfile" # appends the value into the tmpfile.
+        else
+            echo "$p" >> "$tmpfile" # this just makes sure that there are no changes to the original line.
+        fi
+
     done < data.txt
+    mv "$tmpfile" data.txt # writes the tmpfile to the data.txt
+    echo "modification succesful" # prints modification succesful.
+
 }
 
 while true; do
